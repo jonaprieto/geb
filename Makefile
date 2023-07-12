@@ -7,13 +7,13 @@ GEBPACKAGE?=geb.asd
 all: build
 
 build: clean
-	${ROS} run --load ${GEBPACKAGE} --eval \
+	@${ROS} run --load ${GEBPACKAGE} --eval \
 		"(progn \
 			(load \"geb.asd\") \
 			(make-system))"
 
 docs: clean
-	${ROS} run --load ${GEBPACKAGE} --eval \
+	@${ROS} run --load ${GEBPACKAGE} --eval \
 		"(progn \
 			(load \"geb.asd\") \
 			(make-docs) \

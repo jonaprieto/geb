@@ -3410,7 +3410,7 @@ typed lambda calculus within GEB. The class presents untyped [`STLC`][e373] term
     function type with a corresponding codomain iteratively to terms in the
     domains. [`APP`][04f2] takes as argument for the [`FUN`][cccf] accessor
     a function - and hence an [`STLC`][e373] - whose function type has domain an
-    iterated [`GEB:PROD`][06c6] of [SUBSTOBJ][clas] and for the [`TERM`][0171]
+    iterated [`GEB:PROD`][06c6] of [SUBSTOBJ][1f37] and for the [`TERM`][0171]
     a list of terms - and hence of [`STLC`][e373] - matching the types of the
     product. The formal grammar of [`APP`][04f2] is
     
