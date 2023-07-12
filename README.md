@@ -78,13 +78,19 @@ Welcome to the GEB project.
 
 ## 1 Links
 
+
+
 Here is the [official repository](https://github.com/anoma/geb/)
 
 and [HTML documentation](https://anoma.github.io/geb/) for the latest version.
 
+
+
 <a id="x-28GEB-DOCS-2FDOCS-3A-40COVERAGE-20MGL-PAX-3ASECTION-29"></a>
 
 ### 1.1 code coverage
+
+
 
 For test coverage it can be found at the following links:
 
@@ -102,6 +108,8 @@ CCL tests are not currently displaying
 I recommend reading the CCL code coverage version, as it has proper tags.
 
 Currently they are manually generated, and thus for a more accurate assessment see [`GEB-TEST:CODE-COVERAGE`][417f]
+
+
 
 <a id="x-28GEB-DOCS-2FDOCS-3A-40GETTING-STARTED-20MGL-PAX-3ASECTION-29"></a>
 
@@ -384,6 +392,8 @@ conjectures about GEB
 
 ## 5 Categorical Model
 
+
+
 Geb is organizing programming language concepts (and entities!) using
 [category theory](https://plato.stanford.edu/entries/category-theory/),
 originally developed by mathematicians,
@@ -451,31 +461,31 @@ In particular,
 we shall rely on the following
 universal constructions:
 
-1. The construction of binary products $A × B$ of sets $A,B$, and the empty product $\mathsf\{1\}$.
+1. The construction of binary products $A × B$ of sets $A,B$, and the empty product $mathsf\{1\}$.
 
 2. The construction of “function spaces” $B^A$ of sets $A,B$, called *exponentials*,
    i.e., collections of functions between pairs of sets.
 
 3. The so-called [*currying*](https://en.wikipedia.org/wiki/Currying)
 of functions,
-   $C^\{(B^A)\} \cong C^\{(A × B)\}$,
+   $C^\{(B^A)\} cong C^\{(A × B)\}$,
    such that providing several arguments to a function can done
    either simultaneously, or in sequence.
 
 4. The construction of sums (a.k.a.  co-products) $A + B$ of sets $A,B$,
    corresponding to forming disjoint unions of sets;
-   the empty sum is $\varnothing$.
+   the empty sum is $varnothing$.
 
 Product, sums and exponentials
 are the (almost) complete tool chest for writing
 polynomial expressions, e.g.,
-$$Ax^\{\sf 2\} +x^\{\sf 1\} - Dx^\{\sf 0\}.$$
+$$Ax^\{sf 2\} +x^\{sf 1\} - Dx^\{sf 0\}.$$
 (We need these later to define [“algebraic data types”](https://en.wikipedia.org/wiki/Polynomial_functor_(type_theory)).)
 In the above expression,
 we have sets instead of numbers/constants
-where $ \mathsf\{2\} = \lbrace 1, 2 \rbrace$,
-$ \mathsf\{1\} = \lbrace 1 \rbrace$,
-$ \mathsf\{0\} = \lbrace  \rbrace = \varnothing$,
+where $ mathsf\{2\} = lbrace 1, 2 rbrace$,
+$ mathsf\{1\} = lbrace 1 rbrace$,
+$ mathsf\{0\} = lbrace  rbrace = varnothing$,
 and $A$ and $B$ are arbitrary (finite) sets.
 We are only missing a counterpart for the *variable*!
 Raising an arbitrary set to “the power” of a constant set
@@ -497,6 +507,8 @@ Benjamin Pierce's
 [*Basic Category Theory for Computer Scientists*](https://mitpress.mit.edu/9780262660716/) deserves being pointed out
 as it is very amenable *and*
 covers the background we need in 60 short pages.
+
+
 
 <a id="x-28GEB-DOCS-2FDOCS-3A-40MORPHISMS-20MGL-PAX-3ASECTION-29"></a>
 
@@ -3786,7 +3798,7 @@ This covers the main API for the [`STLC`][e373] module
     (ann-term1 (list so1 (so-hom-obj so1 so1)) (app (index 1) (list (index 0))))
     ```
     
-    produces an error trying to use [`HOM-COD`][b324]. This warning applies to other
+    produces an error trying to use. This warning applies to other
     functions taking in context and terms below as well.
     
     Moreover, note that for terms whose typing needs addition of new context
@@ -3801,15 +3813,6 @@ This covers the main API for the [`STLC`][e373] module
     
     as we count indeces from the left of the context while appending new types to
     the context on the left as well. For more info check [`LAMB`][8cde]
-
-<a id="x-28GEB-2ELAMBDA-2EMAIN-3AHOM-COD-20FUNCTION-29"></a>
-
-- [function] **HOM-COD** *CTX F*
-
-    Given a context of [`SUBSTOBJ`][3173] with occurences of
-    [`SO-HOM-OBJ`][07dd] replaced by [`FUN-TYPE`][8dcc], and similarly
-    an [`STLC`][e373] term of the stand-in for the hom object, produces the stand-in
-    to the codomain.
 
 <a id="x-28GEB-2ELAMBDA-2EMAIN-3AINDEX-CHECK-20FUNCTION-29"></a>
 
@@ -4658,7 +4661,6 @@ features and how to better lay out future tests
   [ae23]: http://www.lispworks.com/documentation/HyperSpec/Body/t_seq.htm "SEQUENCE (MGL-PAX:CLHS CLASS)"
   [af14]: #x-28GEB-2EUTILS-3AMCDR-20GENERIC-FUNCTION-29 "GEB.UTILS:MCDR GENERIC-FUNCTION"
   [b0d9]: #x-28GEB-2EGENERICS-3ATO-CIRCUIT-20GENERIC-FUNCTION-29 "GEB.GENERICS:TO-CIRCUIT GENERIC-FUNCTION"
-  [b324]: #x-28GEB-2ELAMBDA-2EMAIN-3AHOM-COD-20FUNCTION-29 "GEB.LAMBDA.MAIN:HOM-COD FUNCTION"
   [b36a]: #x-28GEB-2ELAMBDA-2ESPEC-3A-3CSTLC-3E-20CLASS-29 "GEB.LAMBDA.SPEC:<STLC> CLASS"
   [b4a5]: #x-28GEB-2ELAMBDA-2ESPEC-3AFST-20CLASS-29 "GEB.LAMBDA.SPEC:FST CLASS"
   [b4a6]: #x-28GEB-2EPOLY-2ESPEC-3A-3CPOLY-3E-20CLASS-29 "GEB.POLY.SPEC:<POLY> CLASS"

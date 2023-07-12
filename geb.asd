@@ -189,8 +189,22 @@
              (asdf:load-system :geb/documentation))))
 
 (defun make-system ()
-  (handler-case (asdf:load-system :geb)
+  (handler-case (asdf:load-system :geb/documentation)
     (error (c)
       (declare (ignorable c))
       (ql:quickload :geb)))
   (asdf:make :geb))
+
+(defun make-docs ()
+  (handler-case
+      (progn (asdf:load-system :mgl-pax/navigate)
+             (asdf:load-system :geb/documentation))
+    (error (c)
+      (format t "Failed to load system: ~a" c)
+      (uiop:quit 1)))
+  (handler-case (progn (ql:quickload :geb)
+      (uiop:symbol-call 'geb-docs/docs 'build-docs)
+  )
+    (error (c)
+      (format t "Failed to build docs: ~a" c)
+      (uiop:quit 1))))
