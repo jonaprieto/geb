@@ -3,17 +3,18 @@ BUILDDIR?=./build
 ROS?=ros
 INSTALLDIR?=${HOME}/.local/bin/
 GEBPACKAGE?=geb.asd
+ROSFLAGS?=--load ${GEBPACKAGE}
 
 all: build
 
 build: clean
-	@${ROS} run --load ${GEBPACKAGE} --eval \
+	@${ROS} run ${ROSFLAGS} --eval \
 		"(progn \
 			(load \"geb.asd\") \
 			(make-system))"
 
 docs: clean
-	@${ROS} run --load ${GEBPACKAGE} --eval \
+	@${ROS} run ${ROSFLAGS} --eval \
 		"(progn \
 			(load \"geb.asd\") \
 			(make-docs) \
