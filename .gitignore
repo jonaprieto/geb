@@ -6,4 +6,6 @@
 *.*fas
 .vscode
 build/**
-README
+docs/**/*.html
+docs/**/*.js
+docs/**/*.css
