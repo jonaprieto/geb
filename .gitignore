@@ -5,4 +5,5 @@
 *.*fsl
 *.*fas
 .vscode
-build/
+build/**
+README

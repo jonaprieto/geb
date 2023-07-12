@@ -179,13 +179,13 @@ to use
 An example use of this binary is as follows
 
 ```bash
-mariari@Gensokyo % ./geb.image -i "foo.lisp" -e "geb.lambda.main::*entry*" -l -v -o "foo.pir"
+./geb.image -i "foo.lisp" -e "geb.lambda.main::*entry*" -l -v -o "foo.pir"
 
-mariari@Gensokyo % cat foo.pir
+cat foo.pir
 def entry x1 = {
   (x1)
 };%
-mariari@Gensokyo % ./geb.image -i "foo.lisp" -e "geb.lambda.main::*entry*" -l -v
+./geb.image -i "foo.lisp" -e "geb.lambda.main::*entry*" -l -v
 def *entry* x {
   0
 }

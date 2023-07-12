@@ -1,15 +1,19 @@
-all:
-	make clean || true
-	ros run --load "geb.asd" --eval "(progn (load \"geb.asd\") (make-system))"
+GEBBIN?=geb
+BUILDDIR?=./build
+ROS?=ros
+INSTALLDIR?=${HOME}/.local/bin/
 
-install:
-	make clean || true
-	make all
-	mkdir -p '${HOME}/.local/bin/'
-	mv "./build/geb.image" '${HOME}/.local/bin/'
+all: build
 
-clean:
-	rm "./build/geb.image"
+build: clean
+	${ROS} run --load "geb.asd" --eval "(progn (load \"geb.asd\") (make-system))"
+
+install: build
+	@mkdir -p ${INSTALLDIR}
+	@mv ${BUILDDIR}/${GEBBIN} ${INSTALLDIR}
 
 uninstall:
-	rm '${HOME}/.local/bin/geb.image'
+	@rm -f ${INSTALLDIR}${GEBBIN}
+
+clean:
+	@rm -f ${BUILDDIR}/${GEBBIN}
