@@ -17,8 +17,7 @@ docs: clean
 	@${ROS} run ${ROSFLAGS} --eval \
 		"(progn \
 			(load \"geb.asd\") \
-			(make-docs) \
-			)"
+			(make-docs))"
 
 install: build
 	@mkdir -p ${INSTALLDIR}
