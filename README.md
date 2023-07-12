@@ -2,7 +2,8 @@
 
 # The GEB Manual
 
-## Table of Contents
+<details>
+    <summary>Table of Contents </summary>    
 
 - [1 Links][9bc5]
     - [1.1 code coverage][4044]
@@ -70,6 +71,8 @@
 - [14 Geb Utilities][4ffa]
     - [14.1 Accessors][cc51]
 - [15 Testing][9bcb]
+
+</details>
 
 ###### \[in package GEB-DOCS/DOCS\]
 Welcome to the GEB project.
