@@ -3,16 +3,16 @@
 (muffle-package-variance
  (defpackage #:geb.entry
    (:documentation "Entry point for the geb codebase")
-   (:local-nicknames  (#:poly #:geb.poly)
-                      (#:bitc #:geb.bitc)
-                      (:lambda     :geb.lambda))
-   (:use #:geb.common)))
-
+   (:local-nicknames (#:poly #:geb.poly)
+                     (#:bitc #:geb.bitc)
+                     (:lambda :geb.lambda))
+   (:use #:geb.common)
+   (:export #:main)))
 
 (in-package :geb.entry)
 
 (pax:defsection @geb-entry (:title "Geb as a binary")
-  "The standard way to use geb currently is by loading the code into
+                "The standard way to use geb currently is by loading the code into
 one's lisp environment
 
 ```lisp
@@ -82,4 +82,4 @@ expects a symbol.
 the -l flag means that we are not expecting a geb term, but rather a
 lambda frontend term, this is to simply notify us to compile it as a
 lambda term rather than a geb term. In time this will go away"
-  (compile-down pax:function))
+                (compile-down pax:function))
