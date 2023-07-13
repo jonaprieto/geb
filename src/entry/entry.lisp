@@ -14,13 +14,6 @@
                 (("help" #\h #\?)
                  :type boolean :optional t :documentation "The current help message")))
 
-(defun entry ()
-  (setf uiop:*command-line-arguments* (uiop:command-line-arguments))
-  (command-line-arguments:handle-command-line
-    +command-line-spec+
-    #'argument-handlers
-    :name "geb"))
-
 (defun main (&rest args)
   (command-line-arguments:handle-command-line
     +command-line-spec+

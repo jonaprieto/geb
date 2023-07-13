@@ -8,8 +8,7 @@
   :version "0.3.3"
   :description "Gödel, Escher, Bach, a categorical view of computation"
   :build-pathname "../build/geb"
-  :entry-point "geb.entry::entry"
-
+  :entry-point "geb.entry:main"
   :build-operation "program-op"
 
   :maintainer "Compilers Team at Heliax AG <hello@heliax.dev>"

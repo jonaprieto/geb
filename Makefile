@@ -1,5 +1,6 @@
 GEBBIN?=geb
 BUILDDIR?=./build
+SHELL?=/bin/bash
 ROS?=ros
 INSTALLDIR?=${HOME}/.local/bin/
 GEBPACKAGE?=geb.asd
@@ -26,11 +27,9 @@ install: build
 uninstall:
 	@rm -f ${INSTALLDIR}${GEBBIN}
 
-install-formatter:
-	@${ROS} install yitzchak/cl-indentify
 
 format:
-	cl-indentify -r $(shell find docs src -type f -name "*.lisp") --replace --templates format
+	find . -name '*.lisp' | xargs ${ROS} fmt
 
 clean-build:
 	@rm -f ${BUILDDIR}/${GEBBIN}
