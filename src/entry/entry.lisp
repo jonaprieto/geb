@@ -2,7 +2,7 @@
 
 (defparameter +command-line-spec+
               '((("entry-point" #\e)
-                 :type string :documentation "The function to run, should be fully qualified I.E. geb::my-main")
+                 :type string :optional t :documentation "The function to run, should be fully qualified I.E. geb::my-main")
                 (("stlc")
                  :type boolean :optional t :documentation "Use the simply typed lambda calculus frontend")
                 (("output" #\o)
@@ -10,7 +10,7 @@
                 (("vampir")
                  :type string :optional t :documentation "Return a vamp-ir expression")
                 (("version" #\v)
-                 :type boolean :optional t :documentation "Print the version number")
+                 :type boolean :optional t :documentation "GEB Binary version information")
                 (("help" #\h #\?)
                  :type boolean :optional t :documentation "The current help message")))
 
@@ -27,16 +27,26 @@
     (when (and system (slot-boundp system field))
           (slot-value system field))))
 
+(defun help-message (stream)
+  (format stream
+      "GEB: Gödel, Escher, Bach~%
+A categorical view of computation.~%
+
+Usage:~%
+  geb ((-h | --help) | --version | [LISP-FILE] [[OPTIONS] [arguments...]])~2%
+OPTIONS:~%")
+  (command-line-arguments:show-option-help +command-line-spec+
+                                           :sort-names t)
+  (format stream "~%For more information, visit https://anoma.github.io/geb."))
+
+
 (defun argument-handlers (file &key help stlc output entry-point vampir version)
 
   (flet ((run (stream)
               (cond
                (version
                  (format stream "~A~%" (geb-info 'asdf:version)))
-               ((or help (null file))
-                 (format t "GEB: Gödel, Escher, Bach~%A categorical view of computation.~%~%Usage:~%~%geb ((-h | --help) | --version | [LISP-FILE] [[OPTIONS] [arguments...]])~%~%OPTIONS:~%~%")
-                 (command-line-arguments:show-option-help +command-line-spec+
-                                                          :sort-names t))
+               ((or help (null file)) (help-message stream))
                (t
                  (load file)
                  (compile-down :vampir vampir
