@@ -4,35 +4,12 @@
  [![pages-build-deployment](https://github.com/anoma/geb/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/anoma/geb/actions/workflows/pages/pages-build-deployment)
 
 
-Welcome to *Geb*, a compact yet powerful programming language designed with the unique purpose of providing a universal and unambiguous syntax for defining and translating among any other programming languages. Named in honor of Hofstadter’s iconic work, Gödel, Escher, Bach, Geb is pronounced as a single syllable, adhering to the convention of capitalizing only the first letter, despite its acronymic nature. Dive into Geb and discover an intuitive way to understand, define, and translate various programming languages.
+Welcome to *Geb*, a yet powerful programming language designed with the purpose of providing a universal and unambiguous syntax for defining and translating among any other programming languages. Named in honor of Hofstadter’s iconic work, Gödel, Escher, Bach, Geb is pronounced as a single syllable, adhering to the convention of capitalizing only the first letter, despite its acronymic nature. Dive into Geb and discover an intuitive way to understand, define, and translate various programming languages.
 
-## Future Key Features
+## Who is using Geb?
 
-We are currently developing and aiming to incorporate several key features into Geb, including:
+Geb currently serves as one of the backends for [Juvix](https://docs.juvix.org), a high-level, strongly-typed, functional programming language designed for developing general-purpose decentralized applications on the [Anoma](https://anoma.net) blockchain. More specifically, Geb is used as an intermediate representation to compile Juvix down into [VampIR](https://github.com/anoma/vamp-ir) arithmetic circuits. These circuits are subsequently utilized within the [Anoma](https://anoma.net) blockchain through [Taiga](https://github.com/anoma/taiga).
 
-1. **Metaprogramming**: The capability for programs to generate or alter other programs during execution.
-
-2. **Effects**: The approach of separating side effects from the pure part of a program, simplifying code reasoning and testing.
-
-3. **Dependent Types**: A powerful feature where types can depend on values, enhancing the expressiveness of the type systems.
-
-4. **Programming Languages and Mathematical Logics as Built-in Types**: The unique ability to treat other languages and mathematical logics as intrinsic types.
-
-5. **Composition of Languages and Logics**: The amalgamation of languages and logics, with individual components defined as universal constructions.
-
-6. **Embeddable within Other Languages**: The ability for Geb to be embedded within other host languages, using its effects to call out of the embedded Geb code.
-
-7. **Alternative Syntaxes**: The existence of a precise specification for functions an interpreter must support, without imposing any constraint on the syntax an interpreter should provide. There will be a correct mechanical translation (an isomorphism) between any two valid syntaxes.
-
-8. **Category Theory as Internal and External Language**: Geb aims to leverage category theory as both its internal and external language, providing access to the broad domain of functions and theorems developed in category theory since its inception.
-
-## Portability and Compatibility
-
-Geb's design is grounded in its concise specification composed entirely of category-theoretic universal constructions. This enables the portability of Geb-written code across different interpreters. Moreover, thanks to its relatively weak internal logic, Geb can function as a sub-language of nearly any other general-purpose programming language, broadening its compatibility reach.
-
-## Formal Specification
-
-For more information on the formal specification of Geb, please visit the [Geb Specification](https://github.com/anoma/geb-spec) on GitHub.
 
 ## Documentation
 
@@ -90,17 +67,12 @@ def *entry* x {
 This project uses [common lisp](https://common-lisp.net/), so a few
    dependencies are needed to get around the code-base and start hacking. Namely:
 
-1. [lisp with quicklisp](https://lisp-lang.org/learn/getting-started/).
+1. [Lisp with quicklisp](https://lisp-lang.org/learn/getting-started/).
 
 2. [Emacs](https://en.wikipedia.org/wiki/Emacs) along with one of the following:
 
-    - [sly](https://github.com/joaotavora/sly)
-
-        - [sly user manual](http://joaotavora.github.io/sly/)
-
+    - [sly user manual](http://joaotavora.github.io/sly/)
     - [slime](https://github.com/slime/slime)
-
-        - [slime user manual](http://www.chiark.greenend.org.uk/doc/slime/slime.pdf)
 
 Assuming `sbcl` is installed, one popular implementation of Common Lisp, and you are in the `geb` directory of this repository, follow these steps to interact with the system using the Common Lisp REPL:
 
@@ -136,3 +108,30 @@ Once the file is open, you can load the system by writing:
 (ql:quickload :geb/documentation) ;; only necessary for the first time!
 (asdf:load-system :geb/documentation) ;; if you want to load it in the future
 ```
+
+
+## Formal Specification
+
+Geb's design is grounded in its specification composed entirely of category-theoretic universal constructions. This enables the portability of Geb-written code across different interpreters. Moreover, thanks to its relatively weak internal logic, Geb can function as a sub-language of nearly any other general-purpose programming language, broadening its compatibility reach.
+
+For more information on the formal specification of Geb, please visit the [Geb Specification](https://github.com/anoma/geb-spec) on GitHub.
+
+### Future Key Features
+
+We are currently developing and aiming to incorporate several key features into Geb, including:
+
+1. **Metaprogramming**: The capability for programs to generate or alter other programs during execution.
+
+2. **Effects**: The approach of separating side effects from the pure part of a program, simplifying code reasoning and testing.
+
+3. **Dependent Types**: A powerful feature where types can depend on values, enhancing the expressiveness of the type systems.
+
+4. **Programming Languages and Mathematical Logics as Built-in Types**: The unique ability to treat other languages and mathematical logics as intrinsic types.
+
+5. **Composition of Languages and Logics**: The amalgamation of languages and logics, with individual components defined as universal constructions.
+
+6. **Embeddable within Other Languages**: The ability for Geb to be embedded within other host languages, using its effects to call out of the embedded Geb code.
+
+7. **Alternative Syntaxes**: The existence of a precise specification for functions an interpreter must support, without imposing any constraint on the syntax an interpreter should provide. There will be a correct mechanical translation (an isomorphism) between any two valid syntaxes.
+
+8. **Category Theory as Internal and External Language**: Geb aims to leverage category theory as both its internal and external language, providing access to the broad domain of functions and theorems developed in category theory since its inception.
