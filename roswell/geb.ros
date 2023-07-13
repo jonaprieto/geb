@@ -5,8 +5,8 @@ exec ros -Q -- $0 "$@"
 |#
 (progn ;;init forms
   (ros:ensure-asdf)
-  (ql:quickload :mgl-pax/navigate :silent t)
-  (ql:quickload :geb/documentation :silent t)
+  #+quicklisp(ql:quickload :mgl-pax/navigate :silent t)
+  #+quicklisp(ql:quickload :geb/documentation :silent t)
   )
 
 (defpackage :ros.script.geb.3898217875
@@ -15,4 +15,3 @@ exec ros -Q -- $0 "$@"
 
 (defun main (&rest args)
   (apply #'geb.entry:main args))
-;;; vim: set ft=lisp lisp:

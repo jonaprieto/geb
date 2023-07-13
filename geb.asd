@@ -1,24 +1,25 @@
 (asdf:defsystem :geb
-  :depends-on (:trivia :alexandria :serapeum :fset :fare-quasiquote-extras
-                       ;; wed are only importing this for now until I
-                       ;; give good instructions to update the asdf of sbcl
-                       :cl-reexport
-                       :mgl-pax
-                       :command-line-arguments)
-  :version "0.3.3"
   :description "Gödel, Escher, Bach, a categorical view of computation"
-  :build-pathname "../build/geb"
-  :entry-point "geb.entry:main"
-  :build-operation "program-op"
-
+  :version "0.3.3"
   :maintainer "Compilers Team at Heliax AG <hello@heliax.dev>"
   :author "Mariari, Artem Gureev, Terence Rokop, and GitHub Contributors"
-
   :license "GPL-3.0"
 
+  :depends-on (:trivia
+               :alexandria
+               :serapeum
+               :fset
+               :fare-quasiquote-extras
+               :cl-reexport
+               :mgl-pax
+               :command-line-arguments)
+  
+  :entry-point "geb.entry:main"
+  :build-operation "program-op"
+  :build-pathname "./../build/geb"
   :pathname "src/"
-  :components
 
+  :components
   ((:module util
             :serial t
             :description "Internal utility functions"
@@ -201,7 +202,7 @@
     (error (c)
       (format t "Failed to load system: ~a" c)
       (uiop:quit 1)))
-  (handler-case (progn (ql:quickload :geb)
+  (handler-case (progn (ql:quickload :geb/documentation)
                        (uiop:symbol-call 'geb-docs/docs 'build-docs)
                        (uiop:quit 0))
     (error (c)

@@ -430,8 +430,6 @@ GEB:SUBSTOBJ. Read @OPEN-CLOSED for information on how to use them.")
      ,(pax:make-github-source-uri-fn :geb "https://github.com/anoma/geb"))))
 
 (defun build-docs ()
-  (mgl-pax:update-asdf-system-readmes
-   @index :geb)
   (mgl-pax:update-asdf-system-html-docs
    @index :geb
    :target-dir (asdf/system:system-relative-pathname :geb "docs/")

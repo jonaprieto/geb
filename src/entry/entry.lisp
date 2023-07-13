@@ -2,17 +2,23 @@
 
 (defparameter +command-line-spec+
               '((("entry-point" #\e)
-                 :type string :optional t :documentation "The function to run, should be fully qualified I.E. geb::my-main")
+                 :type string :optional t :documentation
+                 "The function to run, should be fully qualified. Default: geb.lambda.main::*entry ")
                 (("stlc")
-                 :type boolean :optional t :documentation "Use the simply typed lambda calculus frontend")
+                 :type boolean :optional t :documentation
+                 "Use the simply typed lambda calculus frontend")
                 (("output" #\o)
-                 :type string :optional t :documentation "Save the output to a file rather than printing")
+                 :type string :optional t :documentation
+                 "Save the output to a file rather than printing")
                 (("vampir")
-                 :type string :optional t :documentation "Return a vamp-ir expression")
+                 :type string :optional t :documentation
+                 "Return a vamp-ir expression")
                 (("version" #\v)
-                 :type boolean :optional t :documentation "GEB Binary version information")
+                 :type boolean :optional t :documentation
+                 "GEB Binary version information")
                 (("help" #\h #\?)
-                 :type boolean :optional t :documentation "The current help message")))
+                 :type boolean :optional t :documentation
+                 "The current help message")))
 
 (defun main (&rest args)
   (command-line-arguments:handle-command-line
@@ -37,11 +43,15 @@ Usage:~%
 OPTIONS:~%")
   (command-line-arguments:show-option-help +command-line-spec+
                                            :sort-names t)
-  (format stream "~%For more information, visit https://anoma.github.io/geb."))
+  (format stream "~%For more information, visit https://anoma.github.io/geb"))
 
 
-(defun argument-handlers (file &key help stlc output entry-point vampir version)
-
+(defun argument-handlers (file &key
+                               help version
+                               entry-point
+                               stlc
+                               output
+                               vampir)
   (flet ((run (stream)
               (cond
                (version
@@ -49,10 +59,12 @@ OPTIONS:~%")
                ((or help (null file)) (help-message stream))
                (t
                  (load file)
-                 (compile-down :vampir vampir
-                               :stlc stlc
-                               :entry entry-point
-                               :stream stream)))))
+                 (let ((entry (if entry-point entry-point
+                                  "geb.lambda.main::*entry*")))
+                   (compile-down :vampir vampir
+                                 :stlc stlc
+                                 :entry entry
+                                 :stream stream))))))
     (if output
         (with-open-file (file output :direction :output
                               :if-exists :overwrite

@@ -2,8 +2,7 @@
 
 # The GEB Manual
 
-<details>
-    <summary>Table of Contents </summary>    
+## Table of Contents
 
 - [1 Links][9bc5]
     - [1.1 code coverage][4044]
@@ -71,8 +70,6 @@
 - [14 Geb Utilities][4ffa]
     - [14.1 Accessors][cc51]
 - [15 Testing][9bcb]
-
-</details>
 
 ###### \[in package GEB-DOCS/DOCS\]
 Welcome to the GEB project.
@@ -198,13 +195,15 @@ to use
 An example use of this binary is as follows
 
 ```bash
-mariari@Gensokyo % ./geb.image -i "foo.lisp" -e "geb.lambda.main::*entry*" -l -v -o "foo.pir"
+./geb.image -i "foo.lisp" -e "geb.lambda.main::*entry*" -l -v -o "foo.pir"
+```
 
-mariari@Gensokyo % cat foo.pir
+```bash
+cat foo.pir
 def entry x1 = {
   (x1)
 };%
-mariari@Gensokyo % ./geb.image -i "foo.lisp" -e "geb.lambda.main::*entry*" -l -v
+./geb.image -i "foo.lisp" -e "geb.lambda.main::*entry*" -l -v
 def *entry* x {
   0
 }
