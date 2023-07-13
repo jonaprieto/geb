@@ -34,7 +34,7 @@ For those who want to quickly dive in, here's a quick rundown on how to use the 
 brew install roswell
 ```
 
-2. Install GEB using the Roswell launcher with the following command:
+2. Install Geb using the Roswell launcher with the following command:
 
 ```bash
 ros install anoma/geb
@@ -44,6 +44,12 @@ After these steps, you should be able to run `geb` in your terminal. For example
 
 ```bash
 geb foo.lisp --stlc --vampir --output foo.pir
+```
+
+If you can't run `geb` in your terminal, you may need to add `~/.roswell/bin` to your `PATH` environment variable. For macOS users, this can be done using the following command:
+
+```bash
+export PATH="$HOME/.roswell/bin:$PATH"
 ```
 
 Here, `foo.lisp` is a file containing a valid lambda term. For instance:
