@@ -14,9 +14,9 @@
                :mgl-pax
                :command-line-arguments)
   
-  :entry-point "geb.entry:main"
   :build-operation "program-op"
   :build-pathname "./../build/geb"
+  :entry-point "geb.entry::main"
   :pathname "src/"
 
   :components

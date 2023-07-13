@@ -43,7 +43,7 @@ Usage:~%
 OPTIONS:~%")
   (command-line-arguments:show-option-help +command-line-spec+
                                            :sort-names t)
-  (format stream "~%For more information, visit https://anoma.github.io/geb"))
+  (format stream "~%For more information, visit https://anoma.github.io/geb~%"))
 
 
 (defun argument-handlers (file &key
@@ -52,6 +52,7 @@ OPTIONS:~%")
                                stlc
                                output
                                vampir)
+  (format t "file: ~A~%" file)
   (flet ((run (stream)
               (cond
                (version

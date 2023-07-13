@@ -1,5 +1,5 @@
 GEBBIN?=geb
-BUILDDIR?=./bin
+BUILDDIR?=./build
 SHELL?=/bin/bash
 ROS?=ros
 INSTALLDIR?=${HOME}/.local/bin/
