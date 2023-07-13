@@ -41,7 +41,7 @@
                (version
                  (format stream "~A~%" (geb-info 'asdf:version)))
                ((or help (null file))
-                 (format t "GEB: Gödel, Escher, Bach~%A categorical view of computation.~%~%Usage:~%~%   geb [[options] [arguments...]]~%~%Options:~%~%")
+                 (format t "GEB: Gödel, Escher, Bach~%A categorical view of computation.~%~%Usage:~%~%geb ((-h | --help) | --version | [LISP-FILE] [[OPTIONS] [arguments...]])~%~%OPTIONS:~%~%")
                  (command-line-arguments:show-option-help +command-line-spec+
                                                           :sort-names t))
                (t
