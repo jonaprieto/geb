@@ -1,0 +1,18 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  #+quicklisp(ql:quickload :mgl-pax/navigate :silent t)
+  #+quicklisp(ql:quickload :geb/documentation :silent t)
+  )
+
+(defpackage :ros.script.geb.3898217875
+  (:use :cl))
+(in-package :ros.script.geb.3898217875)
+
+(defun main (&rest args)
+  (apply #'geb.entry:main args))
+;;; vim: set ft=lisp lisp:

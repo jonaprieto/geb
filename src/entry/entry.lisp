@@ -1,20 +1,20 @@
 (in-package :geb.entry)
 
 (defparameter +command-line-spec+
-              '((("input" #\i)
-                 :type string :documentation "Input geb file location")
-                (("entry-point" #\e)
-                 :type string :documentation "The function to run, should be fully qualified I.E. geb::my-main")
-                (("stlc" #\l)
-                 :type boolean :optional t :documentation "Use the simply typed lambda calculus frontend")
-                (("output" #\o)
-                 :type string :optional t :documentation "Save the output to a file rather than printing")
-                (("vampir" #\v)
-                 :type string :optional t :documentation "Return a vamp-ir expression")
-                (("version" #\V)
-                 :type boolean :optional t :documentation "Print the version number")
-                (("help" #\h #\?)
-                 :type boolean :optional t :documentation "The current help message")))
+  '((("input" #\i)
+     :type string :documentation "Input geb file location")
+    (("entry-point" #\e)
+     :type string :documentation "The function to run, should be fully qualified I.E. geb::my-main")
+    (("stlc")
+     :type boolean :optional t :documentation "Use the simply typed lambda calculus frontend")
+    (("output" #\o)
+     :type string :optional t :documentation "Save the output to a file rather than printing")
+    (("vampir")
+     :type string :optional t :documentation "Return a vamp-ir expression")
+    (("version" #\v)
+     :type boolean :optional t :documentation "Print the version number")
+    (("help" #\h #\?)
+     :type boolean :optional t :documentation "The current help message")))
 
 (defun entry ()
   (setf uiop:*command-line-arguments* (uiop:command-line-arguments))
@@ -23,25 +23,41 @@
     #'argument-handlers
     :name "geb"))
 
+(defun geb-info (field)
+  (let ((system (asdf:find-system :geb nil)))
+    (when (and system (slot-boundp system field))
+      (slot-value system field))))
+
+(defun main (&rest args)
+  (command-line-arguments:handle-command-line
+    +command-line-spec+
+    #'argument-handlers
+    :command-line args
+    :name "geb"
+    :rest-arity t))
+
 (defun argument-handlers (&key help stlc output input entry-point vampir version)
+
   (flet ((run (stream)
-              (cond (help
-                      (command-line-arguments:show-option-help +command-line-spec+
-                                                               :sort-names t))
-                    (version
-                      (format stream "0.3.3")) ; TODO: extract this info from geb.asd
-                    (t
-                      (load input)
-                      (compile-down :vampir vampir
-                                    :stlc stlc
-                                    :entry entry-point
-                                    :stream stream)))))
+           (cond
+             (version
+               (format stream "~A~%" (geb-info 'asdf:version)))
+             ((or help (null input))
+               (format t "GEB: Gödel, Escher, Bach~%A categorical view of computation.~%~%Usage:~%~%   geb [[options] [arguments...]]~%~%Options:~%~%")
+               (command-line-arguments:show-option-help +command-line-spec+
+                                                        :sort-names t))
+             (t
+               (load input)
+               (compile-down :vampir vampir
+                             :stlc stlc
+                             :entry entry-point
+                             :stream stream)))))
     (if output
-        (with-open-file (file output :direction :output
-                              :if-exists :overwrite
-                              :if-does-not-exist :create)
-          (run file))
-        (run *standard-output*))))
+      (with-open-file (file output :direction :output
+                            :if-exists :overwrite
+                            :if-does-not-exist :create)
+        (run file))
+      (run *standard-output*))))
 
 ;; this code is very bad please abstract out many of the components
 (defun compile-down (&key vampir stlc entry (stream *standard-output*))
@@ -67,8 +83,8 @@
   ;; at least after the first substitute
   (intern
     (~>> symb symbol-name
-      (substitute #\_ #\-)
-      (nsubstitute #\V #\&)
-      (string-trim "*")
-      (nsubstitute #\V #\%))
+         (substitute #\_ #\-)
+         (nsubstitute #\V #\&)
+         (string-trim "*")
+         (nsubstitute #\V #\%))
     :keyword))
