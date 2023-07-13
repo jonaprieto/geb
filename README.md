@@ -40,16 +40,21 @@ brew install roswell
 ros install anoma/geb
 ```
 
-After these steps, you should be able to run `geb` in your terminal. For example:
-
-```bash
-geb foo.lisp --stlc --vampir --output foo.pir
-```
+After these steps, you should be able to run `geb` in your terminal. 
 
 If you can't run `geb` in your terminal, you may need to add `~/.roswell/bin` to your `PATH` environment variable. For macOS users, this can be done using the following command:
 
 ```bash
 export PATH="$HOME/.roswell/bin:$PATH"
+```
+
+Now, let's try running `geb` in your terminal with
+one of the examples included in the `geb` repository:
+
+```bash
+git clone https://github.com/anoma/geb
+cd geb
+geb foo.lisp --stlc --vampir --output foo.pir
 ```
 
 Here, `foo.lisp` is a file containing a valid lambda term. For instance:
